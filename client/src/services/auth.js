@@ -1,10 +1,24 @@
 import api from './api';
 
 // LOGIN
-export const login = (data) => api.post('/auth/login', data);
+export const login = async (data) => {
+  const res = await api.post('/auth/login', data);
+
+  // ✅ SAVE TOKEN
+  localStorage.setItem("token", res.data.token);
+
+  return res;
+};
 
 // REGISTER
-export const register = (data) => api.post('/auth/register', data);
+export const register = async (data) => {
+  const res = await api.post('/auth/register', data);
+
+  // ✅ SAVE TOKEN (optional but recommended)
+  localStorage.setItem("token", res.data.token);
+
+  return res;
+};
 
 // GET USER
 export const getCurrentUser = () => api.get('/auth/me');
