@@ -3,8 +3,8 @@ import axios from "axios";
 const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "/api" // ✅ for deployed app
-      : "http://localhost:5000/api", // ✅ for local dev
+      ? "https://hey-stranger-03.onrender.com/api" // ✅ Render backend
+      : "http://localhost:5000/api", // ✅ Local
 });
 
 api.interceptors.request.use((config) => {
