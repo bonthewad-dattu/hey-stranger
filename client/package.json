@@ -21,6 +21,6 @@
   },
   "scripts": {
     "start": "webpack serve --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build": "npx webpack --mode production"
   }
 }
