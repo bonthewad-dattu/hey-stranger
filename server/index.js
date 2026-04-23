@@ -13,12 +13,14 @@ connectDB();
 
 // ✅ CORS FIX (IMPORTANT)
 app.use(cors({
-origin: [
-'http://localhost:3000',
-'https://bonthewad-dattu-hey-stranger-33o4.vercel.app'
-],
-credentials: true
+  origin: [
+    "http://localhost:3000",
+    "https://hey-stranger.vercel.app",
+    "https://bonthewad-dattu-hey-stranger-33o4.vercel.app"
+  ],
+  credentials: true
 }));
+app.options('*', cors());
 
 // Middleware
 app.use(express.json({ limit: '50mb' }));
