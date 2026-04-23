@@ -41,7 +41,6 @@ app.use('/api/watch', require('./routes/watch'));
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
-
 // ✅ SERVE FRONTEND (IMPORTANT)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -49,10 +48,9 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
   });
+} else {
+  // Test route only in dev
+  app.get('/', (req, res) => {
+    res.send('API is running...');
+  });
 }
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
