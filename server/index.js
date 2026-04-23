@@ -11,13 +11,16 @@ const app = express();
 // Connect DB
 connectDB();
 
-// Middleware
+// ✅ CORS FIX (IMPORTANT)
 app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true,
+origin: [
+'http://localhost:3000',
+'https://bonthewad-dattu-hey-stranger-33o4.vercel.app'
+],
+credentials: true
 }));
 
-app.options('*', cors()); // ✅ IMPORTANT
+// Middleware
 app.use(express.json({ limit: '50mb' }));
 
 // Routes
@@ -41,23 +44,21 @@ app.use('/api/watch', require('./routes/watch'));
 
 // Test route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+res.send('API is running...');
 });
-// ✅ SERVE FRONTEND (IMPORTANT)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
-  });
-} else {
-  // Test route only in dev
-  app.get('/', (req, res) => {
-    res.send('API is running...');
-  });
+// ✅ Serve frontend (only if hosting together — safe to keep)
+if (process.env.NODE_ENV === 'production') {
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+app.get('*', (req, res) => {
+res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+});
 }
+
+// Start server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+console.log(`Server running on port ${PORT}`);
 });
