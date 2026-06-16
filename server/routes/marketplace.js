@@ -4,7 +4,7 @@ const MarketplaceItem = require('../models/MarketplaceItem');
 
 const router = express.Router();
 
-// GET /api/marketplace - list all items
+
 router.get('/', auth, async (req, res) => {
   try {
     const items = await MarketplaceItem.find()
@@ -32,7 +32,6 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/marketplace - create a new item
 router.post('/', auth, async (req, res) => {
   try {
     const { title, price, category = 'General', condition = 'Used', description = '' } =
@@ -57,7 +56,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/marketplace/:id/interested - toggle interested
+
 router.post('/:id/interested', auth, async (req, res) => {
   try {
     const { id } = req.params;

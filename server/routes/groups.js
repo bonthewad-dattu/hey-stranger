@@ -4,7 +4,7 @@ const Group = require('../models/Group');
 
 const router = express.Router();
 
-// GET /api/groups - list all groups
+
 router.get('/', auth, async (req, res) => {
   try {
     const groups = await Group.find().sort({ createdAt: -1 }).lean();
@@ -24,7 +24,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/groups - create a new group
+
 router.post('/', auth, async (req, res) => {
   try {
     const { name, topic = '', description = '' } = req.body;
@@ -46,7 +46,6 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/groups/:id/join - toggle join/leave
 router.post('/:id/join', auth, async (req, res) => {
   try {
     const { id } = req.params;

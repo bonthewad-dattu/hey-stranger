@@ -5,7 +5,7 @@ const FriendRequest = require('../models/FriendRequest');
 
 const router = express.Router();
 
-// GET /api/friends/suggestions - simple suggestions: users who are not me and not already my friend or in any pending request
+
 router.get('/suggestions', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -40,7 +40,7 @@ router.get('/suggestions', auth, async (req, res) => {
   }
 });
 
-// DELETE /api/friends/:friendId - unfriend a user (remove from friends and followers on both sides)
+
 router.delete('/:friendId', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -62,7 +62,7 @@ router.delete('/:friendId', auth, async (req, res) => {
   }
 });
 
-// GET /api/friends/requests - incoming pending friend requests
+
 router.get('/requests', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -84,7 +84,7 @@ router.get('/requests', auth, async (req, res) => {
   }
 });
 
-// POST /api/friends/requests - send a new friend request
+
 router.post('/requests', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -116,7 +116,7 @@ router.post('/requests', auth, async (req, res) => {
   }
 });
 
-// POST /api/friends/requests/:id/accept - accept a friend request
+
 router.post('/requests/:id/accept', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -131,10 +131,10 @@ router.post('/requests/:id/accept', auth, async (req, res) => {
     await request.save();
 
     await Promise.all([
-      // both users become friends
+  
       User.findByIdAndUpdate(meId, { $addToSet: { friends: request.from } }),
       User.findByIdAndUpdate(request.from, { $addToSet: { friends: meId } }),
-      // and follow each other
+     
       User.findByIdAndUpdate(meId, { $addToSet: { followers: request.from } }),
       User.findByIdAndUpdate(request.from, { $addToSet: { followers: meId } }),
     ]);
@@ -146,7 +146,7 @@ router.post('/requests/:id/accept', auth, async (req, res) => {
   }
 });
 
-// POST /api/friends/requests/:id/decline - decline a friend request
+
 router.post('/requests/:id/decline', auth, async (req, res) => {
   try {
     const meId = req.user.id;

@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-// GET /api/users/search?q=term - search users by name or username
+
 router.get('/search', auth, async (req, res) => {
   try {
     const q = (req.query.q || '').trim();
@@ -27,7 +27,6 @@ router.get('/search', auth, async (req, res) => {
   }
 });
 
-// GET /api/users/:username - public profile by username
 router.get('/:username', auth, async (req, res) => {
   try {
     const { username } = req.params;

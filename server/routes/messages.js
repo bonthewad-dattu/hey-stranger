@@ -6,7 +6,7 @@ const Message = require('../models/Message');
 
 const router = express.Router();
 
-// GET /api/messages/conversations - list users you've chatted with (friends-like list)
+
 router.get('/conversations', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -61,7 +61,7 @@ router.get('/conversations', auth, async (req, res) => {
   }
 });
 
-// GET /api/messages/with/:userId - messages between current user and userId
+
 router.get('/with/:userId', auth, async (req, res) => {
   try {
     const meId = req.user.id;
@@ -83,7 +83,7 @@ router.get('/with/:userId', auth, async (req, res) => {
   }
 });
 
-// POST /api/messages - send a message
+
 router.post('/', auth, async (req, res) => {
   try {
     const meId = req.user.id;

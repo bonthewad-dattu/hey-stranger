@@ -4,7 +4,7 @@ const Video = require('../models/Video');
 
 const router = express.Router();
 
-// GET /api/watch - list all videos
+
 router.get('/', auth, async (req, res) => {
   try {
     const videos = await Video.find()
@@ -29,7 +29,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/watch - create a new video entry
+
 router.post('/', auth, async (req, res) => {
   try {
     const { title, videoUrl, description = '' } = req.body;
@@ -51,7 +51,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/watch/:id/like - toggle like/unlike
+
 router.post('/:id/like', auth, async (req, res) => {
   try {
     const { id } = req.params;

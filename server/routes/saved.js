@@ -5,7 +5,7 @@ const Post = require('../models/Post');
 
 const router = express.Router();
 
-// GET /api/saved - list current user's saved posts
+
 router.get('/', auth, async (req, res) => {
   try {
     const saved = await SavedPost.find({ user: req.user.id })
@@ -43,7 +43,6 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/saved/:postId - save a post for current user
 router.post('/:postId', auth, async (req, res) => {
   try {
     const { postId } = req.params;
@@ -61,7 +60,7 @@ router.post('/:postId', auth, async (req, res) => {
   }
 });
 
-// DELETE /api/saved/:postId - unsave a post for current user
+
 router.delete('/:postId', auth, async (req, res) => {
   try {
     const { postId } = req.params;

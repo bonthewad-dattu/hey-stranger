@@ -5,7 +5,6 @@ const Post = require('../models/Post');
 
 const router = express.Router();
 
-// GET /api/social/me/stats - aggregated stats for current user
 router.get('/me/stats', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('followers friends');
@@ -33,7 +32,7 @@ router.get('/me/stats', auth, async (req, res) => {
   }
 });
 
-// GET /api/social/me/posts - posts by current user (same shape as /api/posts)
+
 router.get('/me/posts', auth, async (req, res) => {
   try {
     const posts = await Post.find({ authorId: req.user.id })
@@ -65,7 +64,7 @@ router.get('/me/posts', auth, async (req, res) => {
   }
 });
 
-// GET /api/social/me/media - media posts by current user (same shape as /api/posts)
+
 router.get('/me/media', auth, async (req, res) => {
   try {
     const posts = await Post.find({
@@ -100,7 +99,7 @@ router.get('/me/media', auth, async (req, res) => {
   }
 });
 
-// GET /api/social/me/followers - list followers
+
 router.get('/me/followers', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
@@ -116,7 +115,6 @@ router.get('/me/followers', auth, async (req, res) => {
   }
 });
 
-// GET /api/social/me/friends - list friends
 router.get('/me/friends', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
@@ -132,7 +130,6 @@ router.get('/me/friends', auth, async (req, res) => {
   }
 });
 
-// DELETE /api/social/followers/:followerId - remove a follower from current user
 router.delete('/followers/:followerId', auth, async (req, res) => {
   try {
     const { followerId } = req.params;

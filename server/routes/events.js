@@ -4,7 +4,7 @@ const Event = require('../models/Event');
 
 const router = express.Router();
 
-// GET /api/events - list all events
+
 router.get('/', auth, async (req, res) => {
   try {
     const events = await Event.find()
@@ -30,7 +30,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/events - create a new event
+
 router.post('/', auth, async (req, res) => {
   try {
     const { title, date, location = '', description = '' } = req.body;
@@ -53,7 +53,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/events/:id/going - toggle going/not going
+
 router.post('/:id/going', auth, async (req, res) => {
   try {
     const { id } = req.params;

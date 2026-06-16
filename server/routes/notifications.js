@@ -5,7 +5,6 @@ const Message = require('../models/Message');
 
 const router = express.Router();
 
-// GET /api/notifications/summary - counts for navbar badge
 router.get('/summary', auth, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -17,7 +16,7 @@ router.get('/summary', auth, async (req, res) => {
 
     res.json({ pendingRequests, unreadMessages, total: pendingRequests + unreadMessages });
 
-// POST /api/notifications/mark-read - mark all incoming messages as read
+
 router.post('/mark-read', auth, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -34,7 +33,7 @@ router.post('/mark-read', auth, async (req, res) => {
   }
 });
 
-// GET /api/notifications/history - simple mixed history of recent events
+
 router.get('/history', auth, async (req, res) => {
   try {
     const userId = req.user.id;

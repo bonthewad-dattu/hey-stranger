@@ -6,7 +6,6 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-// GET /api/dashboard/stats (protected)
 router.get('/stats', auth, async (req, res) => {
   try {
     const [postsCount, commentsCount, reactionsCount] = await Promise.all([
@@ -26,8 +25,7 @@ router.get('/stats', auth, async (req, res) => {
   }
 });
 
-// GET /api/dashboard/stories (protected)
-// Treats any recent media/story post from the last 24 hours as a "story".
+
 router.get('/stories', auth, async (req, res) => {
   try {
     const since = new Date(Date.now() - 24 * 60 * 60 * 1000);

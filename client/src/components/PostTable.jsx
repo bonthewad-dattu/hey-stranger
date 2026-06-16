@@ -7,7 +7,7 @@ const PostTable = ({ posts, onDelete, onView }) => {
       <h2>Post Details</h2>
       <table className={styles.table}>
         <thead>
-          <tr>
+  <tr>
             <th>ID</th>
             <th>Author</th>
             <th>Type</th>

@@ -4,13 +4,13 @@ This project is a MERN-stack version of the existing "Hey Stranger" social media
 
 ## Folder Structure
 
-```text
+
 project-root/
 ├── client/   # React frontend
 └── server/   # Node + Express + MongoDB backend
-```
 
----
+
+
 
 ## 1. Backend (server)
 

@@ -4,7 +4,6 @@ const Offer = require('../models/Offer');
 
 const router = express.Router();
 
-// GET /api/offers - list all offers
 router.get('/', auth, async (req, res) => {
   try {
     const offers = await Offer.find()
@@ -30,7 +29,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/offers - create a new offer
+
 router.post('/', auth, async (req, res) => {
   try {
     const { title, details = '', expiresAt } = req.body;
@@ -52,7 +51,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/offers/:id/claim - toggle claim
+
 router.post('/:id/claim', auth, async (req, res) => {
   try {
     const { id } = req.params;

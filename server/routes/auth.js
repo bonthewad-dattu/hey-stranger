@@ -7,7 +7,6 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 
-// ================= REGISTER =================
 router.post('/register', async (req, res) => {
   try {
     const { name, username, email, phone, gender, dateOfBirth, password } = req.body;
@@ -56,7 +55,6 @@ router.post('/register', async (req, res) => {
 });
 
 
-// ================= LOGIN =================
 router.post('/login', async (req, res) => {
   try {
     const { identifier, password } = req.body;
@@ -95,7 +93,7 @@ router.post('/login', async (req, res) => {
 });
 
 
-// ================= GET CURRENT USER (FIXED) =================
+
 router.get('/me', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
@@ -107,7 +105,7 @@ router.get('/me', auth, async (req, res) => {
 });
 
 
-// ================= UPDATE USER =================
+
 router.patch('/me', auth, async (req, res) => {
   try {
     const updates = req.body;
@@ -127,7 +125,7 @@ router.patch('/me', auth, async (req, res) => {
 });
 
 
-// ================= DELETE USER =================
+
 router.delete('/me', auth, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.user.id);

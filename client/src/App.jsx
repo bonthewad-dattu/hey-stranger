@@ -34,11 +34,11 @@ import Register from './pages/Register.jsx';
 const App = () => {
   return (
     <Routes>
-      {/* Public routes */}
+      
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Protected routes */}
+     
       <Route
         path="/"
         element={
@@ -76,7 +76,7 @@ const App = () => {
         <Route path="explore/offers" element={<Offers />} />
       </Route>
 
-      {/* Fallback: redirect unknown routes to login */}
+     
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );

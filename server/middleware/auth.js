@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user || decoded;
-    // Fire-and-forget presence update
+    
     if (req.user?.id) {
       try {
         User.findByIdAndUpdate(req.user.id, { lastActiveAt: new Date() }).exec();

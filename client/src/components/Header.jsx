@@ -36,7 +36,7 @@ const Header = () => {
   const [friendsLoading, setFriendsLoading] = useState(false);
   const [notifications, setNotifications] = useState({ pendingRequests: 0, unreadMessages: 0, total: 0 });
   const [notificationsCleared, setNotificationsCleared] = useState(false);
-  const MAX_VIDEO_BYTES = 7 * 1024 * 1024; // ~7MB client-side safety limit
+  const MAX_VIDEO_BYTES = 7 * 1024 * 1024; 
 
   const handlePostMediaChange = (e, currentType) => {
     const file = e.target.files?.[0];
@@ -104,7 +104,7 @@ const Header = () => {
     showToast('You have been logged out.', 'info');
   };
 
-  // Poll notification summary for navbar badge ("real-time" feel)
+  
   useEffect(() => {
     if (notificationsCleared) {
       return undefined;
@@ -115,7 +115,7 @@ const Header = () => {
         const res = await getNotificationSummary();
         setNotifications(res.data);
       } catch (err) {
-        // ignore errors for now
+        
       }
     };
 
@@ -124,7 +124,7 @@ const Header = () => {
     return () => clearInterval(id);
   }, [notificationsCleared]);
 
-  // Allow other components (e.g., Dashboard stories card) to open the same post modal
+  
   useEffect(() => {
     const handler = () => {
       setPostIsStory(false);
@@ -148,13 +148,13 @@ const Header = () => {
   }, []);
 
   const handleNotificationsClick = () => {
-    // Clear badge immediately when user clicks the bell
+    
     setNotifications({ pendingRequests: 0, unreadMessages: 0, total: 0 });
     setNotificationsCleared(true);
     navigate('/notifications');
   };
 
-  // Inbox chat has its own full page now, so navbar just links to /inbox
+  
 
   const openFriendsModal = async () => {
     setFriendsModalOpen(true);
@@ -200,7 +200,7 @@ const Header = () => {
       }
       setIncomingRequests((prev) => prev.filter((r) => r._id !== id));
     } catch (err) {
-      // ignore for now
+     
       showToast('Could not update friend request.', 'error');
     }
   };
@@ -255,7 +255,7 @@ const Header = () => {
       handleClosePostModal();
       showToast(postIsStory ? 'Story created.' : 'Post created.', 'success');
     } catch (err) {
-      // Could add toast later
+      
       showToast(postIsStory ? 'Failed to create story.' : 'Failed to create post.', 'error');
     } finally {
       setPostSubmitting(false);
@@ -369,9 +369,7 @@ const Header = () => {
             )}
           </div>
           <div className={styles.avatarDropdown}>
-            {/* <button type="button" onClick={() => navigate('/profile')}>
-              <i className="fas fa-user" /> Profile
-            </button> */}
+           
             <button type="button" onClick={handleLogout}>
               <i className="fas fa-sign-out-alt" /> Logout
             </button>

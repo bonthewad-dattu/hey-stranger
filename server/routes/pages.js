@@ -4,7 +4,6 @@ const Page = require('../models/Page');
 
 const router = express.Router();
 
-// GET /api/pages - list all pages
 router.get('/', auth, async (req, res) => {
   try {
     const pages = await Page.find().sort({ createdAt: -1 }).lean();
@@ -24,7 +23,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/pages - create a new page
+
 router.post('/', auth, async (req, res) => {
   try {
     const { title, category = 'Community', description = '' } = req.body;
@@ -46,7 +45,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/pages/:id/follow - toggle follow/unfollow
+
 router.post('/:id/follow', auth, async (req, res) => {
   try {
     const { id } = req.params;

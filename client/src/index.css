@@ -1,5 +1,5 @@
 :root {
-  /* Brand colors */
+ 
   --color-primary: #2563eb;
   --color-primary-soft: #e0edff;
   --color-primary-strong: #1d4ed8;
@@ -47,7 +47,6 @@ body {
   min-height: 100vh;
 }
 
-/* Global layout shell */
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -65,7 +64,7 @@ body {
   margin-inline: auto;
 }
 
-/* Generic surface + card styles */
+
 .surface-card {
   background: var(--color-bg-surface);
   border-radius: var(--radius-md);
@@ -77,7 +76,7 @@ body {
   box-shadow: var(--shadow-card);
 }
 
-/* Buttons */
+
 .btn,
 button.btn {
   border-radius: var(--radius-pill);
@@ -126,7 +125,7 @@ button.btn:disabled {
   box-shadow: none;
 }
 
-/* Inputs */
+
 .input,
 select.input,
 textarea.input {
@@ -164,7 +163,7 @@ textarea.input:focus {
   color: var(--color-text-muted);
 }
 
-/* Form layout helpers */
+
 .form-row {
   display: flex;
   flex-direction: column;
@@ -198,7 +197,7 @@ textarea.input:focus {
   background-color: #ffffff;
 }
 
-/* Modal shell */
+
 .elevated-modal-card {
   background: #ffffff;
   border-radius: var(--radius-lg);
@@ -218,7 +217,6 @@ textarea.input:focus {
   color: var(--color-text-muted);
 }
 
-/* Utility layout helpers */
 .stack-md {
   display: flex;
   flex-direction: column;
@@ -248,7 +246,7 @@ textarea.input:focus {
   color: var(--color-primary);
 }
 
-/* Micro-interactions */
+
 .card-hover-lift {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -273,7 +271,7 @@ textarea.input:focus {
   }
 }
 
-/* Responsive typography */
+
 h1,
 .h1 {
   font-size: clamp(1.7rem, 2.2vw, 2.1rem);
@@ -297,7 +295,7 @@ small,
   font-size: 0.75rem;
 }
 
-/* Scrollbar subtle styling */
+
 body::-webkit-scrollbar {
   width: 8px;
 }

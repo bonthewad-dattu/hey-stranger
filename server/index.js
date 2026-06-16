@@ -8,10 +8,10 @@ dotenv.config();
 
 const app = express();
 
-// Connect DB
+
 connectDB();
 
-// ✅ CORS FIX (IMPORTANT)
+
 app.use(cors({
   origin: [
     "http://localhost:3000",
@@ -22,10 +22,9 @@ app.use(cors({
 }));
 app.options('*', cors());
 
-// Middleware
 app.use(express.json({ limit: '50mb' }));
 
-// Routes
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/dashboard', require('./routes/dashboard'));
@@ -44,12 +43,12 @@ app.use('/api/marketplace', require('./routes/marketplace'));
 app.use('/api/offers', require('./routes/offers'));
 app.use('/api/watch', require('./routes/watch'));
 
-// Test route
+
 app.get('/', (req, res) => {
 res.send('API is running...');
 });
 
-// ✅ Serve frontend (only if hosting together — safe to keep)
+
 if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -58,7 +57,7 @@ res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
 });
 }
 
-// Start server
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

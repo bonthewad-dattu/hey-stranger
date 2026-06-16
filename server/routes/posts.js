@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-// GET /api/posts (protected)
+
 router.get('/', auth, async (req, res) => {
   try {
     const posts = await Post.find({ isStory: { $ne: true } })
@@ -39,7 +39,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// GET /api/posts/user/:username (protected) - posts by a specific user, same shape as /api/posts
+
 router.get('/user/:username', auth, async (req, res) => {
   try {
     const { username } = req.params;
@@ -78,7 +78,7 @@ router.get('/user/:username', auth, async (req, res) => {
   }
 });
 
-// POST /api/posts (protected)
+
 router.post('/', auth, async (req, res) => {
   try {
     const { type = 'Text', text = '', mediaUrl, isStory = false } = req.body;
@@ -105,7 +105,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// PATCH /api/posts/:id (protected) - update text/caption
+
 router.patch('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -139,7 +139,7 @@ router.patch('/:id', auth, async (req, res) => {
   }
 });
 
-// DELETE /api/posts/:id (protected)
+
 router.delete('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -153,7 +153,7 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-// GET /api/posts/:id/comments (protected)
+
 router.get('/:id/comments', auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -174,7 +174,7 @@ router.get('/:id/comments', auth, async (req, res) => {
   }
 });
 
-// POST /api/posts/:id/comments (protected)
+
 router.post('/:id/comments', auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -209,9 +209,7 @@ router.post('/:id/comments', auth, async (req, res) => {
 
 module.exports = router;
 
-// Below are post interaction endpoints: like, stats, repost
 
-// POST /api/posts/:id/like (protected) - toggle like for current user
 router.post('/:id/like', auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -230,7 +228,7 @@ router.post('/:id/like', auth, async (req, res) => {
   }
 });
 
-// GET /api/posts/:id/stats - counts for likes, comments, reposts
+
 router.get('/:id/stats', auth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -239,7 +237,7 @@ router.get('/:id/stats', auth, async (req, res) => {
       Comment.countDocuments({ post: id }),
       Post.countDocuments({ repostOf: id }),
     ]);
-    // whether current user liked
+    
     let liked = false;
     if (req.user?.id) {
       const r = await Reaction.findOne({ post: id, userId: req.user.id, type: 'like' }).lean();
@@ -252,7 +250,7 @@ router.get('/:id/stats', auth, async (req, res) => {
   }
 });
 
-// POST /api/posts/:id/repost (protected) - create a repost
+
 router.post('/:id/repost', auth, async (req, res) => {
   try {
     const { id } = req.params;

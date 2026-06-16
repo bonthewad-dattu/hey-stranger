@@ -4,7 +4,7 @@ const Blog = require('../models/Blog');
 
 const router = express.Router();
 
-// GET /api/blogs - list all blogs
+
 router.get('/', auth, async (req, res) => {
   try {
     const blogs = await Blog.find()
@@ -28,7 +28,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/blogs - create a new blog
+
 router.post('/', auth, async (req, res) => {
   try {
     const { title, content } = req.body;
@@ -49,7 +49,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/blogs/:id/like - toggle like/unlike
+
 router.post('/:id/like', auth, async (req, res) => {
   try {
     const { id } = req.params;
